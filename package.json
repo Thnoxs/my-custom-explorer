@@ -1,0 +1,92 @@
+{
+  "name": "thnoxs-explorer",
+  "displayName": "Thnoxs Explorer",
+  "description": "Professional Native-like Explorer by Thnoxs",
+  "version": "1.4.0",
+  "publisher": "Thnoxs",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onView:quickAccessView",
+    "onView:infoView"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Tuk-Tuk Express",
+      "properties": {
+        "quickAccess.showHidden": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show hidden files and folders (starting with .)"
+        }
+      }
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "quickAccessContainer",
+          "title": "Tuk-Tuk Express",
+          "icon": "resources/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "quickAccessContainer": [
+        {
+          "id": "quickAccessView",
+          "name": "Local Files"
+        },
+        {
+          "id": "infoView",
+          "name": "About Developer"
+        }
+      ]
+    },
+    "commands": [
+      { "command": "quickAccess.refresh", "title": "Refresh", "icon": "$(refresh)" },
+      { "command": "quickAccess.changeFolder", "title": "Change Root", "icon": "$(folder-opened)" },
+      { "command": "quickAccess.createFile", "title": "New File", "icon": "$(new-file)" },
+      { "command": "quickAccess.createFolder", "title": "New Folder", "icon": "$(new-folder)" },
+      { "command": "quickAccess.delete", "title": "Delete", "icon": "$(trash)" },
+      { "command": "quickAccess.rename", "title": "Rename", "icon": "$(edit)" },
+      { "command": "quickAccess.copyPath", "title": "Copy Path", "icon": "$(clippy)" },
+      { "command": "quickAccess.revealInOS", "title": "Reveal in Explorer", "icon": "$(link-external)" },
+      { "command": "quickAccess.openUrl", "title": "Open Link" },
+      { "command": "quickAccess.openFile", "title": "Open File" }
+    ],
+    "menus": {
+      "view/title": [
+        { "command": "quickAccess.createFile", "group": "navigation@1", "when": "view == quickAccessView" },
+        { "command": "quickAccess.createFolder", "group": "navigation@2", "when": "view == quickAccessView" },
+        { "command": "quickAccess.refresh", "group": "navigation@3", "when": "view == quickAccessView" },
+        { "command": "quickAccess.changeFolder", "group": "navigation@4", "when": "view == quickAccessView" }
+      ],
+      "view/item/context": [
+        { 
+          "command": "quickAccess.delete", 
+          "group": "inline", 
+          "when": "view == quickAccessView" 
+        },
+        { "command": "quickAccess.rename", "group": "1_mod", "when": "view == quickAccessView" },
+        { "command": "quickAccess.delete", "group": "1_mod", "when": "view == quickAccessView" },
+        { "command": "quickAccess.copyPath", "group": "2_utils", "when": "view == quickAccessView" },
+        { "command": "quickAccess.revealInOS", "group": "2_utils", "when": "view == quickAccessView" }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/node": "16.x",
+    "typescript": "^4.9.3"
+  }
+}

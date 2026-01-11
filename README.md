@@ -9,7 +9,7 @@
 ## 📺 Demo Video
 Check out how Thnoxs Explorer simplifies your workflow:
 
-![Thnoxs Explorer Demo](resources/video.mp4)
+![Thnoxs Explorer Demo](resources/fixed.mp4)
 
 ---
 
